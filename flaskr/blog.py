@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -99,3 +100,9 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/<int:id>/detail', methods=('GET',))
+def detail(id):
+    post = get_post(id, check_author=False)
+    return render_template('blog/detail.html', post=post)
