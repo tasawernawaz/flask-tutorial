@@ -48,6 +48,7 @@ def test_login(client, auth):
         assert session["user_id"] == 1
         assert g.user["username"] == "test"
 
+
 @pytest.mark.parametrize(("username", "password", "message"), (
     ("", "test", b"Incorrect username"),
     ("test", "", b"Incorrect password")
